@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard - StudySphere</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="app-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <div class="logo-box">🎓</div>
+      <div>
+        <div class="brand">Study Sphere</div>
+        <div class="brand-sub">Learn & Grow</div>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="nav-item active">🏠 Dashboard</a>
+    </nav>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <!-- TOPBAR -->
+    <div class="topbar">
+      <input class="search" placeholder="Search..." />
+      <div class="top-actions">
+        <button id="themeToggle">🌙</button>
+        <button class="logout-btn" onclick="logout()">Logout</button>
+      </div>
+    </div>
+
+    <!-- WELCOME -->
+    <h1 class="welcome">
+      Welcome back, <span id="userName">Student</span>! 👋
+    </h1>
+    <p class="welcome-sub">Your AI study companion is ready to help you learn better.</p>
+
+    <!-- AI CARD -->
+    <div class="ai-card">
+      <div class="ai-title">AI Study Insights</div>
+      <ul id="aiInsights">
+        <li>Start studying to get smart insights.</li>
+      </ul>
+    </div>
+
+    <!-- STATS -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-num" id="studyHours">0</div>
+        <div class="stat-label">Study Hours</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num" id="studyStreak">0</div>
+        <div class="stat-label">Study Sessions</div>
+      </div>
+    </div>
+
+    <!-- ================= STUDY PLANNER ================= -->
+    <div class="panel" style="margin-top:30px;">
+      <h2>Study Planner</h2>
+
+      <input type="text" id="subjectInput" placeholder="Subject name">
+      <input type="number" id="durationInput" placeholder="Duration (minutes)">
+      <button onclick="addTask()">Add Task</button>
+
+      <ul id="taskList"></ul>
+    </div>
+
+    <!-- ================= TIMER ================= -->
+    <div class="panel" style="margin-top:30px;">
+      <h2>Focus Timer</h2>
+
+      <h1 id="timerDisplay">25:00</h1>
+
+      <button onclick="startTimer()">Start</button>
+      <button onclick="pauseTimer()">Pause</button>
+      <button onclick="resetTimer()">Reset</button>
+    </div>
+
+  </main>
+
+</div>
+
+<script src="auth.js"></script>
+<script src="theme.js"></script>
+<script src="app.js"></script>
+
+<script>
+  const user = JSON.parse(localStorage.getItem("user"));
+  if (user && user.name) {
+    document.getElementById("userName").textContent = user.name;
+  }
+</script>
+
+</body>
+</html>
